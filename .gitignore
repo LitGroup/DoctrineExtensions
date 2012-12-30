@@ -1,0 +1,40 @@
+# Library #
+###########
+/vendor
+/composer.lock
+
+/tests/report/*
+phpunit.xml
+
+# Composer #
+############
+composer.phar
+
+# IDE files   #
+###############
+/.buildpath
+/.settings
+/.project
+/.metadata
+
+/nbproject
+
+*.sublime*
+
+*~
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Keep .gitkeep #
+#################
+!.gitkeep
+

@@ -1,0 +1,19 @@
+{
+    "name": "litgroup/doctrine-extensions",
+    "description": "Extensions for Doctrine 2.x",
+    "type": "library",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name":  "Roman Shamritskiy",
+            "email": "roman@litgroup.ru"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "LitGroup\\DoctrineExtensions": "lib/" }
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "doctrine/orm": ">=2.0,<2.4-dev"
+    }    
+}
