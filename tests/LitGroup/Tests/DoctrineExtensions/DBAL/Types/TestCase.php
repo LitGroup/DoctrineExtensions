@@ -2,7 +2,9 @@
 
 namespace LitGroup\Tests\DoctrineExtensions\DBAL\Types;
 
-abstract class TestCase extends \PHPUnit_Framework_TestCase
+use LitGroup\Tests\TestCase as LitGroupTestCase;
+
+abstract class TestCase extends LitGroupTestCase
 {
     
     /**

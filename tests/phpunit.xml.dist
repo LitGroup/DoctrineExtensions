@@ -14,8 +14,11 @@
     bootstrap                   = "bootstrap.php" >
 
     <testsuites>
-        <testsuite name="Doctrine DBAL Types">
+        <testsuite name="Doctrine DBAL Extensions">
             <directory>LitGroup/Tests/DoctrineExtensions/DBAL/Types</directory>
+        </testsuite>
+        <testsuite name="Doctrine ORM Extensions">
+            <directory>LitGroup/Tests/DoctrineExtensions/ORM</directory>
         </testsuite>
     </testsuites>
 
