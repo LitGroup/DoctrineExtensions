@@ -1,9 +1,9 @@
 <?php
 
-namespace LitGroup\Tests\DoctrineExtensions\ORM\Mapping;
+namespace LGP\Tests\DoctrineExtensions\ORM\Mapping;
 
-use LitGroup\Tests\TestCase;
-use LitGroup\DoctrineExtensions\ORM\Mapping\CamelNamingStrategy;
+use LGP\Tests\TestCase;
+use LGP\DoctrineExtensions\ORM\Mapping\CamelNamingStrategy;
 
 class CamelNamingStrategyTest extends TestCase
 {

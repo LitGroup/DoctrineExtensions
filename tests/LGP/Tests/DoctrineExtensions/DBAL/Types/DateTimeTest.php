@@ -1,6 +1,6 @@
 <?php
 
-namespace LitGroup\Tests\DoctrineExtensions\DBAL\Types;
+namespace LGP\Tests\DoctrineExtensions\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
 
@@ -32,7 +32,7 @@ class DateTimeTest extends TestCase
         $map = Type::getTypesMap();
         $this->defTypeClass  = $map[Type::DATETIME];
         
-        Type::overrideType(Type::DATETIME, 'LitGroup\\DoctrineExtensions\\DBAL\\Types\\DateTimeType');
+        Type::overrideType(Type::DATETIME, 'LGP\\DoctrineExtensions\\DBAL\\Types\\DateTimeType');
         
         $this->type = Type::getType(Type::DATETIME);
         $this->tz   = \date_default_timezone_get();

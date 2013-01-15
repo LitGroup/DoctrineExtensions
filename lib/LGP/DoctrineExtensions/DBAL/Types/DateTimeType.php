@@ -1,20 +1,20 @@
 <?php
 
-namespace LitGroup\DoctrineExtensions\DBAL\Types;
+namespace LGP\DoctrineExtensions\DBAL\Types;
 
-use Doctrine\DBAL\Types\TimeType as Type;
+use Doctrine\DBAL\Types\DateTimeType as Type;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 /**
- * Type that maps an SQL TIME/TIMESTAMP to a PHP DateTime object.
+ * Type that maps an SQL DATETIME/TIMESTAMP to a PHP DateTime object.
  * 
  * This class must be used to override built-in Doctrine type.
- * It always saves time in UTC and retrieves in UTC too.
+ * It always saves datetime in UTC and retrieves in UTC too.
  * 
  * @author Roman Shamritskiy <roman@litgroup.ru>
  */
-class TimeType extends Type
+class DateTimeType extends Type
 {
     /**
      * @var \DateTimeZone
@@ -32,7 +32,7 @@ class TimeType extends Type
         
         $value->setTimezone($this->getUtcTz());
     
-        return $value->format($platform->getTimeFormatString());
+        return $value->format($platform->getDateTimeFormatString());
     }
     
     
@@ -52,7 +52,7 @@ class TimeType extends Type
         }
         
         $val = \DateTime::createFromFormat(
-                    $platform->getTimeFormatString(),
+                    $platform->getDateTimeFormatString(),
                     $value,
                     $this->getUtcTz()
                 )

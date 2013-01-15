@@ -10,7 +10,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "LitGroup\\DoctrineExtensions": "lib/" }
+        "psr-0": { "LGP\\DoctrineExtensions": "lib/" }
     },
     "require": {
         "php": ">=5.3.0",

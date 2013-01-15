@@ -1,6 +1,6 @@
 <?php
 
-namespace LitGroup\DoctrineExtensions\ORM\Mapping;
+namespace LGP\DoctrineExtensions\ORM\Mapping;
 
 use Doctrine\ORM\Mapping\NamingStrategy;
 

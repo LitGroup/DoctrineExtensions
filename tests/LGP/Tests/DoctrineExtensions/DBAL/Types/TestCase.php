@@ -1,15 +1,15 @@
 <?php
 
-namespace LitGroup\Tests\DoctrineExtensions\DBAL\Types;
+namespace LGP\Tests\DoctrineExtensions\DBAL\Types;
 
-use LitGroup\Tests\TestCase as LitGroupTestCase;
+use LGP\Tests\TestCase as LGPTestCase;
 
-abstract class TestCase extends LitGroupTestCase
+abstract class TestCase extends LGPTestCase
 {
     
     /**
      * Platform Mock Object
-     * @var \LitGroup\Tests\DoctrineExtensions\DBAL\Mocks\MockPlatform
+     * @var \LGP\Tests\DoctrineExtensions\DBAL\Mocks\MockPlatform
      */
     protected static $platform;
     
@@ -19,7 +19,7 @@ abstract class TestCase extends LitGroupTestCase
      */
     public static function setUpBeforeClass()
     {
-        self::$platform = new \LitGroup\Tests\DoctrineExtensions\DBAL\Mocks\MockPlatform;
+        self::$platform = new \LGP\Tests\DoctrineExtensions\DBAL\Mocks\MockPlatform;
     }
     
     /**
