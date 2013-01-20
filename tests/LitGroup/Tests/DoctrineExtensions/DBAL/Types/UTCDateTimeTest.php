@@ -1,6 +1,6 @@
 <?php
 
-namespace LGP\Tests\DoctrineExtensions\DBAL\Types;
+namespace LitGroup\Tests\DoctrineExtensions\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
 
@@ -17,7 +17,7 @@ class UTCDateTimeTest extends TestCase
      */
     protected function setUp()
     {
-        Type::addType('utcdatetime', 'LGP\\DoctrineExtensions\\DBAL\\Types\\UTCDateTimeType');
+        Type::addType('utcdatetime', 'LitGroup\\DoctrineExtensions\\DBAL\\Types\\UTCDateTimeType');
         
         $this->type = Type::getType('utcdatetime');
     }

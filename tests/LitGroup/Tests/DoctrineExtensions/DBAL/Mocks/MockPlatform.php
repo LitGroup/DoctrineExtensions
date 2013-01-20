@@ -1,6 +1,6 @@
 <?php
 
-namespace LGP\Tests\DoctrineExtensions\DBAL\Mocks;
+namespace LitGroup\Tests\DoctrineExtensions\DBAL\Mocks;
 
 class MockPlatform extends \Doctrine\DBAL\Platforms\AbstractPlatform
 {

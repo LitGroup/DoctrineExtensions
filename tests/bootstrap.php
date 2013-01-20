@@ -16,7 +16,7 @@ if (file_exists(__DIR__.'/../vendor/autoload.php')) {
 // register silently failing autoloader
 spl_autoload_register(function($class)
 {
-    if (0 === strpos($class, 'LGP\Tests\\')) {
+    if (0 === strpos($class, 'LitGroup\Tests\\')) {
         $path = __DIR__.'/'.strtr($class, '\\', '/').'.php';
         if (file_exists($path) && is_readable($path)) {
             require_once $path;

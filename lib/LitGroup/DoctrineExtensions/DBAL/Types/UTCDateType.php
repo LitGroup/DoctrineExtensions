@@ -1,6 +1,6 @@
 <?php
 
-namespace LGP\DoctrineExtensions\DBAL\Types;
+namespace LitGroup\DoctrineExtensions\DBAL\Types;
 
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;

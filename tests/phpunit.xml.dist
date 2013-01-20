@@ -15,10 +15,10 @@
 
     <testsuites>
         <testsuite name="Doctrine DBAL Extensions">
-            <directory>LGP/Tests/DoctrineExtensions/DBAL/Types</directory>
+            <directory>LitGroup/Tests/DoctrineExtensions/DBAL/Types</directory>
         </testsuite>
         <testsuite name="Doctrine ORM Extensions">
-            <directory>LGP/Tests/DoctrineExtensions/ORM</directory>
+            <directory>LitGroup/Tests/DoctrineExtensions/ORM</directory>
         </testsuite>
     </testsuites>
 

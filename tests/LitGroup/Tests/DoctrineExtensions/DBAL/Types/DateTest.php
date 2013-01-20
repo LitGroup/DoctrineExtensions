@@ -1,10 +1,10 @@
 <?php
 
-namespace LGP\Tests\DoctrineExtensions\DBAL\Types;
+namespace LitGroup\Tests\DoctrineExtensions\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
 
-class TimeTest extends TestCase
+class DateTest extends TestCase
 {
     /**
      * @var \Doctrine\DBAL\Types\Type
@@ -30,17 +30,17 @@ class TimeTest extends TestCase
     protected function setUp()
     {
         $map = Type::getTypesMap();
-        $this->defTypeClass  = $map[Type::TIME];
+        $this->defTypeClass  = $map[Type::DATE];
         
-        Type::overrideType(Type::TIME, 'LGP\\DoctrineExtensions\\DBAL\\Types\\TimeType');
+        Type::overrideType(Type::DATE, 'LitGroup\\DoctrineExtensions\\DBAL\\Types\\DateType');
         
-        $this->type = Type::getType(Type::TIME);
+        $this->type = Type::getType(Type::DATE);
         $this->tz   = \date_default_timezone_get();
     }
 
     public function tearDown()
     {
-        Type::overrideType(Type::TIME, $this->defTypeClass);
+        Type::overrideType(Type::DATE, $this->defTypeClass);
         date_default_timezone_set($this->tz);
     }
 
@@ -48,7 +48,7 @@ class TimeTest extends TestCase
     
     public function testCheckTypeName()
     {
-        $this->assertSame('time', $this->type->getName());
+        $this->assertSame('date', $this->type->getName());
     }
     
     public function testConvertsUtcToDatabaseValue()
@@ -58,7 +58,7 @@ class TimeTest extends TestCase
         
         $this->assertTrue(is_string($result));
         $this->assertEquals(
-            $date->format(self::$platform->getTimeFormatString()),
+            $date->format(self::$platform->getDateFormatString()),
             $result
         );
     }
@@ -70,20 +70,40 @@ class TimeTest extends TestCase
         
         $this->assertTrue(is_string($result));
         $this->assertEquals(
-                $date->format(self::$platform->getTimeFormatString()),
+                $date->format(self::$platform->getDateFormatString()),
                 $result
         );
     }
 
     public function testConvertsToPHPValue()
     {
-        $result = $this->type->convertToPHPValue('01:55:43', self::$platform);
+        $result = $this->type->convertToPHPValue('1988-08-29', self::$platform);
                 
         $this->assertInstanceOf('\DateTime', $result);
-        $this->assertEquals('01:55:43', $result->format('H:i:s'));
+        $this->assertEquals('1988-08-29', $result->format('Y-m-d'));
         $this->assertEquals('UTC', $result->getTimeZone()->getName());
     }
     
+    public function testDateResetsNonDatePartsToZeroUnixTimeValues()
+    {
+        $date = $this->type->convertToPHPValue('1988-08-29', self::$platform);
+    
+        $this->assertEquals('00:00:00', $date->format('H:i:s'));
+    }
+    
+    public function testDateRests_SummerTimeAffection()
+    {
+        date_default_timezone_set('Europe/Berlin');
+    
+        $date = $this->type->convertToPHPValue('2009-08-01', self::$platform);
+        $this->assertEquals('00:00:00', $date->format('H:i:s'));
+        $this->assertEquals('2009-08-01', $date->format('Y-m-d'));
+    
+        $date = $this->type->convertToPHPValue('2009-11-01', self::$platform);
+        $this->assertEquals('00:00:00', $date->format('H:i:s'));
+        $this->assertEquals('2009-11-01', $date->format('Y-m-d'));
+    }
+
     public function testInvalidDateFormatConversion()
     {
         $this->setExpectedException('Doctrine\DBAL\Types\ConversionException');
