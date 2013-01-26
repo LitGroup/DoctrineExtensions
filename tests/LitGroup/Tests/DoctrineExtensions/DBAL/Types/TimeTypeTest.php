@@ -12,12 +12,6 @@ class TimeTypeTest extends TestCase
     protected $type;
 
     /**
-     * Time zone string
-     * @var string
-     */
-    protected $tz;
-    
-    /**
      * Default type class
      * 
      * @var string
@@ -35,13 +29,11 @@ class TimeTypeTest extends TestCase
         Type::overrideType(Type::TIME, 'LitGroup\\DoctrineExtensions\\DBAL\\Types\\TimeType');
         
         $this->type = Type::getType(Type::TIME);
-        $this->tz   = \date_default_timezone_get();
     }
 
     public function tearDown()
     {
         Type::overrideType(Type::TIME, $this->defTypeClass);
-        date_default_timezone_set($this->tz);
     }
 
     // ----------------------------------------------

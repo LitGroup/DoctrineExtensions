@@ -12,12 +12,6 @@ class DateTimeTypeTest extends TestCase
     protected $type;
 
     /**
-     * Time zone string
-     * @var string
-     */
-    protected $tz;
-    
-    /**
      * Default type class
      * 
      * @var string
@@ -35,13 +29,11 @@ class DateTimeTypeTest extends TestCase
         Type::overrideType(Type::DATETIME, 'LitGroup\\DoctrineExtensions\\DBAL\\Types\\DateTimeType');
         
         $this->type = Type::getType(Type::DATETIME);
-        $this->tz   = \date_default_timezone_get();
     }
 
     public function tearDown()
     {
         Type::overrideType(Type::DATETIME, $this->defTypeClass);
-        date_default_timezone_set($this->tz);
     }
 
     // ----------------------------------------------
@@ -67,8 +59,6 @@ class DateTimeTypeTest extends TestCase
     {
         $date   = new \DateTime('now', new \DateTimeZone('UTC'));
         $result = $this->type->convertToDatabaseValue(new \DateTime('now', new \DateTimeZone('Europe/Moscow')), self::$platform);
-        
-        $date->setTimezone(new \DateTimeZone('UTC'));
         
         $this->assertTrue(is_string($result));
         $this->assertEquals(
