@@ -4,7 +4,7 @@ namespace LitGroup\Tests\DoctrineExtensions\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
 
-class UTCDateTest extends TestCase
+class UTCDateTimeTypeTest extends TestCase
 {
     /**
      * @var \Doctrine\DBAL\Types\Type
@@ -17,15 +17,15 @@ class UTCDateTest extends TestCase
      */
     protected function setUp()
     {
-        Type::addType('utcdate', 'LitGroup\\DoctrineExtensions\\DBAL\\Types\\UTCDateType');
+        Type::addType('utcdatetime', 'LitGroup\\DoctrineExtensions\\DBAL\\Types\\UTCDateTimeType');
         
-        $this->type = Type::getType('utcdate');
+        $this->type = Type::getType('utcdatetime');
     }
 
     // ----------------------------------------------
     
     public function testCheckTypeName()
     {
-        $this->assertSame('utcdate', $this->type->getName());
+        $this->assertSame('utcdatetime', $this->type->getName());
     }
 }

@@ -4,7 +4,7 @@ namespace LitGroup\Tests\DoctrineExtensions\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
 
-class UTCTimeTest extends TestCase
+class UTCTimeTypeTest extends TestCase
 {
     /**
      * @var \Doctrine\DBAL\Types\Type
