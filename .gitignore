@@ -23,6 +23,8 @@ composer.phar
 
 *~
 
+/.idea
+
 # OS generated files #
 ######################
 .DS_Store
@@ -37,4 +39,3 @@ Thumbs.db
 # Keep .gitkeep #
 #################
 !.gitkeep
-

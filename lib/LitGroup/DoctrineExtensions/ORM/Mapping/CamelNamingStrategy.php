@@ -30,7 +30,7 @@ class CamelNamingStrategy implements NamingStrategy
     /**
      * {@inheritdoc}
      */
-    public function propertyToColumnName($propertyName)
+    public function propertyToColumnName($propertyName, $className = null)
     {
         if (strpos($propertyName, '_') !== false) {
             

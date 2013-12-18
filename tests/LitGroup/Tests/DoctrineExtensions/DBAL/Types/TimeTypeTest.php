@@ -45,8 +45,8 @@ class TimeTypeTest extends TestCase
     
     public function testConvertsUtcToDatabaseValue()
     {
-        $date   = new \DateTime('now', new \DateTimeZone('UTC'));
-        $result = $this->type->convertToDatabaseValue(new \DateTime('now', new \DateTimeZone('UTC')), self::$platform);
+        $date   = $this->createDateTime('now', new \DateTimeZone('UTC'));
+        $result = $this->type->convertToDatabaseValue($this->createDateTime('now', new \DateTimeZone('UTC')), self::$platform);
         
         $this->assertTrue(is_string($result));
         $this->assertEquals(
@@ -57,8 +57,8 @@ class TimeTypeTest extends TestCase
     
     public function testConvertsNonUtcToDatabaseValue()
     {
-        $date   = new \DateTime('now', new \DateTimeZone('UTC'));
-        $result = $this->type->convertToDatabaseValue(new \DateTime('now', new \DateTimeZone('Europe/Moscow')), self::$platform);
+        $date   = $this->createDateTime('now', new \DateTimeZone('UTC'));
+        $result = $this->type->convertToDatabaseValue($this->createDateTime('now', new \DateTimeZone('Europe/Moscow')), self::$platform);
         
         $this->assertTrue(is_string($result));
         $this->assertEquals(
@@ -92,7 +92,7 @@ class TimeTypeTest extends TestCase
 
     public function testConvertsUtcDateTimeToPHPValue()
     {
-        $date = new \DateTime('now', new \DateTimeZone('UTC'));
+        $date = $this->createDateTime('now', new \DateTimeZone('UTC'));
         
         $this->assertSame($date, $this->type->convertToPHPValue($date, self::$platform));
         $this->assertEquals('UTC', $date->getTimezone()->getName());
@@ -100,9 +100,12 @@ class TimeTypeTest extends TestCase
     
     public function testConvertsNonUtcDateTimeToPHPValue()
     {
-        $date = new \DateTime('now', new \DateTimeZone('Europe/Moscow'));
-        
-        $this->assertSame($date, $this->type->convertToPHPValue($date, self::$platform));
+        $date = $this->createDateTime('now', new \DateTimeZone('Europe/Moscow'));
+
+        $converted = $this->type->convertToPHPValue($date, self::$platform);
+        $date = $date->setTimezone(new \DateTimeZone('UTC'));
+        $this->assertEquals($date->format('H:i:s'), $converted->format('H:i:s'));
         $this->assertEquals('UTC', $date->getTimezone()->getName());
     }
+
 }

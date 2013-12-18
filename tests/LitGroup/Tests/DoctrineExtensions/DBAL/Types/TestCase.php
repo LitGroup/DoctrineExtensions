@@ -29,4 +29,15 @@ abstract class TestCase extends LitGroupTestCase
     {
         self::$platform = null;
     }
+
+    /**
+     * @param string        $time
+     * @param \DateTimeZone $tz
+     *
+     * @return \DateTime
+     */
+    protected function createDateTime($time = 'now', \DateTimeZone $tz)
+    {
+        return new \DateTime($time, $tz);
+    }
 }

@@ -29,10 +29,10 @@ class DateTimeType extends Type
         if ($value === null) {
             return null;
         }
-        
-        $value->setTimezone($this->getUtcTz());
-    
-        return $value->format($platform->getDateTimeFormatString());
+
+        return $value
+            ->setTimezone($this->getUtcTz())
+            ->format($platform->getDateTimeFormatString());
     }
     
     
@@ -45,18 +45,17 @@ class DateTimeType extends Type
             return null;
         }
         
-        if ($value instanceof \DateTime) {
-            $value->setTimezone($this->getUtcTz());
-            
-            return $value;
+        if ($value instanceof \DateTime || $value instanceof \DateTimeImmutable) {
+            return $value->getTimeZone()->getName() === 'UTC'
+                   ? $value
+                   : $value->setTimezone($this->getUtcTz());
         }
         
         $val = \DateTime::createFromFormat(
                     $platform->getDateTimeFormatString(),
                     $value,
                     $this->getUtcTz()
-                )
-        ;
+                );
         
         if (!$val) {
             throw ConversionException::conversionFailed($value, $this->getName());

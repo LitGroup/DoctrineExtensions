@@ -30,9 +30,9 @@ class TimeType extends Type
             return null;
         }
         
-        $value->setTimezone($this->getUtcTz());
-    
-        return $value->format($platform->getTimeFormatString());
+        return $value
+            ->setTimezone($this->getUtcTz())
+            ->format($platform->getTimeFormatString());
     }
     
     
@@ -44,11 +44,11 @@ class TimeType extends Type
         if ($value === null) {
             return null;
         }
-        
-        if ($value instanceof \DateTime) {
-            $value->setTimezone($this->getUtcTz());
-            
-            return $value;
+
+        if ($value instanceof \DateTime || $value instanceof \DateTimeImmutable) {
+            return $value->getTimeZone()->getName() === 'UTC'
+                   ? $value
+                   : $value->setTimezone($this->getUtcTz());
         }
         
         $val = \DateTime::createFromFormat(
