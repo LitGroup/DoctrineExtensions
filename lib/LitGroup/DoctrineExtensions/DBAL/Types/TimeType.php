@@ -19,7 +19,7 @@ class TimeType extends Type
     /**
      * @var \DateTimeZone
      */
-    static private $utc = null;
+    static private $utc;
     
     /**
      * {@inheritdoc}
@@ -52,11 +52,10 @@ class TimeType extends Type
         }
         
         $val = \DateTime::createFromFormat(
-                    $platform->getTimeFormatString(),
-                    $value,
-                    $this->getUtcTz()
-                )
-        ;
+            $platform->getTimeFormatString(),
+            $value,
+            $this->getUtcTz()
+        );
         
         if (!$val) {
             throw ConversionException::conversionFailed($value, $this->getName());

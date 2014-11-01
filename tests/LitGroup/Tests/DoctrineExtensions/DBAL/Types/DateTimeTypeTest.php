@@ -48,7 +48,7 @@ class DateTimeTypeTest extends TestCase
         $date   = $this->createDateTime('now', new \DateTimeZone('UTC'));
         $result = $this->type->convertToDatabaseValue($this->createDateTime('now', new \DateTimeZone('UTC')), self::$platform);
         
-        $this->assertTrue(is_string($result));
+        $this->assertInternalType('string', $result);
         $this->assertEquals(
             $date->format(self::$platform->getDateTimeFormatString()),
             $result
@@ -59,8 +59,8 @@ class DateTimeTypeTest extends TestCase
     {
         $date   = $this->createDateTime('now', new \DateTimeZone('UTC'));
         $result = $this->type->convertToDatabaseValue($this->createDateTime('now', new \DateTimeZone('Europe/Moscow')), self::$platform);
-        
-        $this->assertTrue(is_string($result));
+
+        $this->assertInternalType('string', $result);
         $this->assertEquals(
                 $date->format(self::$platform->getDateTimeFormatString()),
                 $result
