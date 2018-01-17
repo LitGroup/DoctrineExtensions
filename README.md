@@ -1,6 +1,8 @@
 LitGroup/DoctrineExtensions
 ===========================
 
+🚫 **(This project is no longer maintained.)**
+
 **Extensions**:
 
   * **DBAL:**
